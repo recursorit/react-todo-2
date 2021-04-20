@@ -1,0 +1,86 @@
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Modal, Button, Table } from 'react-bootstrap';
+import React, { useState } from 'react';
+
+
+
+
+function App() {
+  const onDelete = () => {
+    console.log('i am on delete', todos)
+    setTodos(todos.filter((e)=>{
+      return e!==todos
+    }))
+  }
+
+  const[todos,setTodos] = useState([
+    <Table striped bordered>
+      <thead className='text-center'>
+        <tr>
+          <th>SNo</th>
+          <th>Todo</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody className='text-center' >
+      {
+        <tr>
+          <td>1</td>
+          <td>todo will be displayed here.</td>
+          <td>
+            <Button className='btn-info px-3 mx-3'>Edit</Button>
+            <Button className='btn-danger' onClick={onDelete}>Delete</Button>
+          </td>
+        </tr>
+}
+{
+        <tr>
+          <td>2</td>
+          <td>todo will be displayed here.</td>
+          <td>
+            <Button className='btn-info px-3 mx-3'>Edit</Button>
+            <Button className='btn-danger'>Delete</Button>
+          </td>
+        </tr>
+}
+{
+        <tr>
+          <td>3</td>
+          <td>todo will be displayed here.</td>
+          <td>
+            <Button className='btn-info px-3 mx-3'>Edit</Button>
+            <Button className='btn-danger'>Delete</Button>
+          </td>
+        </tr>
+}
+      </tbody>
+    </Table>
+  ])
+  const handleChange = (e) => {
+    console.log(e.target.value)
+  }
+
+  return (
+    <div className='container'>
+      <div className='row'>
+        <div className='col-10 mx-auto col-md-8 mt-5'>
+          <h1 className='text-center text-primary'>Todo Input</h1>
+          <div className='card card-body my-5 '>
+            <div className='input-group'>
+              <input type='text' className='form-control' placeholder='Add your todos here.' onChange={handleChange} />
+              <Button className='btn-primary mx-2 px-5'>Add</Button>
+            </div>
+          </div>
+          <h1 className='text-center text-primary my-5'>Todo List </h1>
+          {todos.map(() => {
+            return <div>{todos}
+            </div>
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
