@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TodoItem } from './TodoItem'
-import { Table } from 'react-bootstrap'
-
-
-
+import { Table, Button, Modal } from 'react-bootstrap'
 
 export const Todos = (props) => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedTodo, setSelectedTodo] = useState({});
+    const { todos, onDelete } = props;
+
+    const onYesClicked = (todo) => {
+        onDelete(todo);
+        setModalIsOpen(false);
+    }
+
+    const setSelectedTodoItem = (todo) => {
+        setSelectedTodo(todo);
+        setModalIsOpen(true);
+    }
+
     return (
         <div className='container'>
             <h2 className='text-center text-primary my-3'>Todos List</h2>
@@ -14,12 +25,36 @@ export const Todos = (props) => {
                     <tr>
                         <th>SNo</th>
                         <th>Todo</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {todos.map((todo) => {
+                        return <TodoItem
+                            setModalIsOpen={setModalIsOpen}
+                            todo={todo}
+                            key={todo.sno}
+                            onDelete={setSelectedTodoItem}
+                            onEdit={props.onEdit}
+                        />
+                    })}
+                </tbody>
             </Table>
-            {props.todos.map((todo) => {
-                return <TodoItem todo={todo} key={todo.sno} onDelete={props.onDelete} onEdit={props.onEdit} />
-            })}
+
+            <Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Action</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you wish to delete this record?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setModalIsOpen(false)}>
+                        Close
+                </Button>
+                    <Button variant="primary" onClick={() => onYesClicked(selectedTodo)}>
+                        Save Changes
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }
