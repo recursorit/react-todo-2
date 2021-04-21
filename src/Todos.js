@@ -5,7 +5,10 @@ import { Table, Button, Modal } from 'react-bootstrap'
 export const Todos = (props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState({});
-    const { todos, onDelete } = props;
+
+    console.log("Exec Todos.js")
+
+    const { todos, onDelete, onEdit } = props;
 
     const onYesClicked = (todo) => {
         onDelete(todo);
@@ -47,11 +50,11 @@ export const Todos = (props) => {
                 </Modal.Header>
                 <Modal.Body>Are you sure you wish to delete this record?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setModalIsOpen(false)}>
+                    <Button variant="info" onClick={() => setModalIsOpen(false)}>
                         Close
                 </Button>
-                    <Button variant="primary" onClick={() => onYesClicked(selectedTodo)}>
-                        Save Changes
+                    <Button variant="danger" onClick={() => onYesClicked(selectedTodo)}>
+                        Delete
                 </Button>
                 </Modal.Footer>
             </Modal>

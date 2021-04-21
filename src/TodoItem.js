@@ -2,8 +2,9 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 
 
-export const TodoItem = (props) => {
-    const { todo, onEdit, onDelete } = props;
+export const TodoItem = ({ todo, onDelete, onEdit }) => {
+
+    console.log("Exec TodoItem.js")
     return (
         <tr>
             <td>{todo.sno}</td>

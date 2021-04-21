@@ -84,3 +84,25 @@ function App() {
 }
 
 export default App;
+
+//     const newTodo = prompt('Edit your todo here!')
+    //     console.log(newTodo)
+    //     let sno = todos.length + 1
+    //  const  updatedTodo = {
+    //       sno: sno,
+    //       title: newTodo
+    //     }
+    //     setTodos([todos,updatedT
+
+     // const filterItems = todos.filter((e) => { return e !== todo })
+
+  // const findItems = todos.find((e) => { return e == todo })
+
+  // console.log('edited', findItems)
+  // setTodos({
+  //   todo: filterItems,
+  //   todo: findItems,
+  //   sno: sno
+  // })
+  // setitem({sno:todo.sno,title:todo.title})
+
